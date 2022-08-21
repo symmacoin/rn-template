@@ -29,13 +29,11 @@ type CustomTextStyleProp = StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
 
 const dummyFunction = () => {};
 export interface IRecoverScreenProps {
-  signupText?: string;
   disableDivider?: boolean;
   logoImageSource: any;
   disableSocialButtons?: boolean;
   emailPlaceholder?: string;
   passwordPlaceholder?: string;
-  disableSignup?: boolean;
   disablePasswordInput?: boolean;
   loginButtonText?: string;
   style?: CustomStyleProp;
@@ -44,11 +42,8 @@ export interface IRecoverScreenProps {
   textInputContainerStyle?: CustomStyleProp;
   loginButtonStyle?: CustomStyleProp;
   loginTextStyle?: CustomTextStyleProp;
-  signupStyle?: CustomStyleProp;
-  signupTextStyle?: CustomTextStyleProp;
   children?: any;
-  onLoginPress: () => void;
-  onSignupPress: () => void;
+  onRecoverPress: () => void;
   onEmailChange: (email: string) => void;
   onPasswordChange: (password: string) => void;
   onFacebookPress?: () => void;
@@ -63,17 +58,13 @@ const RecoverScreen: React.FC<IRecoverScreenProps> = ({
   logoImageStyle,
   loginTextStyle,
   loginButtonStyle,
-  signupTextStyle,
-  signupStyle,
   textInputContainerStyle,
-  signupText = "Create an account",
   disableDivider,
   logoImageSource,
-  onLoginPress,
+  onRecoverPress,
   disableSocialButtons,
-  disablePasswordInput = false,
+  disablePasswordInput = true,
   loginButtonText = "Recover",
-  onSignupPress,
   onEmailChange,
   onPasswordChange,
   onFacebookPress = dummyFunction,
@@ -82,7 +73,6 @@ const RecoverScreen: React.FC<IRecoverScreenProps> = ({
   onDiscordPress = dummyFunction,
   emailPlaceholder = "Email",
   passwordPlaceholder = "Password",
-  disableSignup = false,
   children,
 }) => {
   const Logo = () => (
@@ -108,10 +98,10 @@ const RecoverScreen: React.FC<IRecoverScreenProps> = ({
     </View>
   );
 
-  const LoginButton = () => (
+  const RecoverButton = () => (
     <TouchableOpacity
       style={[styles.loginButtonStyle, loginButtonStyle]}
-      onPress={onLoginPress}
+      onPress={onRecoverPress}
     >
       <Text style={[styles.loginTextStyle, loginTextStyle]}>
         {loginButtonText}
@@ -119,20 +109,9 @@ const RecoverScreen: React.FC<IRecoverScreenProps> = ({
     </TouchableOpacity>
   );
 
-  const SignUp = () => (
-    <TouchableOpacity
-      style={[styles.signupStyle, signupStyle]}
-      onPress={onSignupPress}
-    >
-      <Text style={[styles.signupTextStyle, signupTextStyle]}>
-        {signupText}
-      </Text>
-    </TouchableOpacity>
-  );
-
   const Divider = () => <View style={[styles.dividerStyle, dividerStyle]} />;
 
-  const DefaultSocialLoginButtons = () =>
+  const DefaultSocialRecoverButtons = () =>
     !disableSocialButtons ? (
       <>
         <SocialButton
@@ -168,7 +147,8 @@ const RecoverScreen: React.FC<IRecoverScreenProps> = ({
       <StatusBar barStyle="dark-content" />
       <Logo />
       <TextInputContainer />
-      <LoginButton />
+      <RecoverButton />
+      {!disableDivider && <Divider />}
     </SafeAreaView>
   );
 };

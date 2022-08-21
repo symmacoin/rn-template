@@ -30,7 +30,7 @@ const LoginsScreen: React.FC<LoginsScreenProps> = () => {
       <LoginScreen
         logoImageSource={require("@assets/images/logo/logo-example.png")}
         onLoginPress={() => {}}
-        onSignupPress={() => NavigationService.push(SCREENS.REGISTER)}
+        onRegisterPress={() => NavigationService.push(SCREENS.REGISTER)}
         onEmailChange={(email: string) => {}}
         onPasswordChange={(password: string) => {}}
         onRecoverPress={() => NavigationService.push(SCREENS.RECOVER)}

@@ -29,13 +29,14 @@ type CustomTextStyleProp = StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
 
 const dummyFunction = () => {};
 export interface IRegisterScreenProps {
-  signupText?: string;
   disableDivider?: boolean;
   logoImageSource: any;
   disableSocialButtons?: boolean;
+  namePlaceholder?: string;
   emailPlaceholder?: string;
+  phonePlaceholder?: string;
   passwordPlaceholder?: string;
-  disableSignup?: boolean;
+  confirmPasswordPlaceholder?: string;
   disablePasswordInput?: boolean;
   loginButtonText?: string;
   style?: CustomStyleProp;
@@ -44,13 +45,13 @@ export interface IRegisterScreenProps {
   textInputContainerStyle?: CustomStyleProp;
   loginButtonStyle?: CustomStyleProp;
   loginTextStyle?: CustomTextStyleProp;
-  signupStyle?: CustomStyleProp;
-  signupTextStyle?: CustomTextStyleProp;
   children?: any;
-  onLoginPress: () => void;
-  onSignupPress: () => void;
+  onRegisterPress: () => void;
+  onNameChange: (name: string) => void;
   onEmailChange: (email: string) => void;
+  onPhoneChange: (phone: string) => void;
   onPasswordChange: (password: string) => void;
+  onConfirmPasswordChange: (confirmpassword: string) => void;
   onFacebookPress?: () => void;
   onTwitterPress?: () => void;
   onApplePress?: () => void;
@@ -63,26 +64,27 @@ const RegisterScreen: React.FC<IRegisterScreenProps> = ({
   logoImageStyle,
   loginTextStyle,
   loginButtonStyle,
-  signupTextStyle,
-  signupStyle,
   textInputContainerStyle,
-  signupText = "Create an account",
   disableDivider,
   logoImageSource,
-  onLoginPress,
+  onRegisterPress,
   disableSocialButtons,
   disablePasswordInput = false,
   loginButtonText = "Register",
-  onSignupPress,
+  onNameChange,
   onEmailChange,
+  onPhoneChange,
   onPasswordChange,
+  onConfirmPasswordChange,
   onFacebookPress = dummyFunction,
   onTwitterPress = dummyFunction,
   onApplePress = dummyFunction,
   onDiscordPress = dummyFunction,
+  namePlaceholder = "Name",
   emailPlaceholder = "Email",
+  phonePlaceholder = "Phone",
   passwordPlaceholder = "Password",
-  disableSignup = false,
+  confirmPasswordPlaceholder = "Confirm Password",
   children,
 }) => {
   const Logo = () => (
@@ -95,7 +97,9 @@ const RegisterScreen: React.FC<IRegisterScreenProps> = ({
 
   const TextInputContainer = () => (
     <View style={[styles.textInputContainer, textInputContainerStyle]}>
+      <TextInput placeholder={namePlaceholder} onChangeText={onNameChange} />
       <TextInput placeholder={emailPlaceholder} onChangeText={onEmailChange} />
+      <TextInput placeholder={phonePlaceholder} onChangeText={onPhoneChange} />
       {!disablePasswordInput && (
         <View style={styles.passwordTextInputContainer}>
           <TextInput
@@ -103,15 +107,20 @@ const RegisterScreen: React.FC<IRegisterScreenProps> = ({
             secureTextEntry
             onChangeText={onPasswordChange}
           />
+          <TextInput
+            placeholder={confirmPasswordPlaceholder}
+            secureTextEntry
+            onChangeText={onConfirmPasswordChange}
+          />
         </View>
       )}
     </View>
   );
 
-  const LoginButton = () => (
+  const RegisterButton = () => (
     <TouchableOpacity
       style={[styles.loginButtonStyle, loginButtonStyle]}
-      onPress={onLoginPress}
+      onPress={onRegisterPress}
     >
       <Text style={[styles.loginTextStyle, loginTextStyle]}>
         {loginButtonText}
@@ -119,20 +128,9 @@ const RegisterScreen: React.FC<IRegisterScreenProps> = ({
     </TouchableOpacity>
   );
 
-  const SignUp = () => (
-    <TouchableOpacity
-      style={[styles.signupStyle, signupStyle]}
-      onPress={onSignupPress}
-    >
-      <Text style={[styles.signupTextStyle, signupTextStyle]}>
-        {signupText}
-      </Text>
-    </TouchableOpacity>
-  );
-
   const Divider = () => <View style={[styles.dividerStyle, dividerStyle]} />;
 
-  const DefaultSocialLoginButtons = () =>
+  const DefaultSocialRegisterButtons = () =>
     !disableSocialButtons ? (
       <>
         <SocialButton
@@ -168,7 +166,8 @@ const RegisterScreen: React.FC<IRegisterScreenProps> = ({
       <StatusBar barStyle="dark-content" />
       <Logo />
       <TextInputContainer />
-      <LoginButton />
+      <RegisterButton />
+      {!disableDivider && <Divider />}
     </SafeAreaView>
   );
 };

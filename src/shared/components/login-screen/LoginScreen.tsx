@@ -28,14 +28,14 @@ type CustomTextStyleProp = StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
 
 const dummyFunction = () => {};
 export interface ILoginScreenProps {
-  signupText?: string;
+  registerText?: string;
   recoverText?: string;
   disableDivider?: boolean;
   logoImageSource: any;
   disableSocialButtons?: boolean;
   emailPlaceholder?: string;
   passwordPlaceholder?: string;
-  disableSignup?: boolean;
+  disableRegister?: boolean;
   disableRecover?: boolean;
   disablePasswordInput?: boolean;
   loginButtonText?: string;
@@ -45,13 +45,13 @@ export interface ILoginScreenProps {
   textInputContainerStyle?: CustomStyleProp;
   loginButtonStyle?: CustomStyleProp;
   loginTextStyle?: CustomTextStyleProp;
-  signupStyle?: CustomStyleProp;
-  signupTextStyle?: CustomTextStyleProp;
+  registerStyle?: CustomStyleProp;
+  registerTextStyle?: CustomTextStyleProp;
   recoverStyle?: CustomStyleProp;
   recoverTextStyle?: CustomTextStyleProp;
   children?: any;
   onLoginPress: () => void;
-  onSignupPress: () => void;
+  onRegisterPress: () => void;
   onRecoverPress: () => void;
   onEmailChange: (email: string) => void;
   onPasswordChange: (password: string) => void;
@@ -67,12 +67,12 @@ const LoginScreen: React.FC<ILoginScreenProps> = ({
   logoImageStyle,
   loginTextStyle,
   loginButtonStyle,
-  signupTextStyle,
-  signupStyle,
+  registerTextStyle,
+  registerStyle,
   recoverTextStyle,
   recoverStyle,
   textInputContainerStyle,
-  signupText = "Create an account",
+  registerText = "Create an account",
   recoverText = "Recover Password",
   disableDivider,
   logoImageSource,
@@ -80,7 +80,7 @@ const LoginScreen: React.FC<ILoginScreenProps> = ({
   disableSocialButtons,
   disablePasswordInput = false,
   loginButtonText = "Login",
-  onSignupPress,
+  onRegisterPress,
   onRecoverPress,
   onEmailChange,
   onPasswordChange,
@@ -90,7 +90,7 @@ const LoginScreen: React.FC<ILoginScreenProps> = ({
   onDiscordPress = dummyFunction,
   emailPlaceholder = "Email",
   passwordPlaceholder = "Password",
-  disableSignup = false,
+  disableRegister = false,
   disableRecover = false,
   children,
 }) => {
@@ -128,13 +128,13 @@ const LoginScreen: React.FC<ILoginScreenProps> = ({
     </TouchableOpacity>
   );
 
-  const SignUp = () => (
+  const Register = () => (
     <TouchableOpacity
-      style={[styles.signupStyle, signupStyle]}
-      onPress={onSignupPress}
+      style={[styles.registerStyle, registerStyle]}
+      onPress={onRegisterPress}
     >
-      <Text style={[styles.signupTextStyle, signupTextStyle]}>
-        {signupText}
+      <Text style={[styles.registerTextStyle, registerTextStyle]}>
+        {registerText}
       </Text>
     </TouchableOpacity>
   );
@@ -189,7 +189,7 @@ const LoginScreen: React.FC<ILoginScreenProps> = ({
       <Logo />
       <TextInputContainer />
       <LoginButton />
-      {!disableSignup && <SignUp />}
+      {!disableRegister && <Register />}
       {!disableRecover && <Recover />}
       {!disableDivider && <Divider />}
       <View style={styles.socialLoginContainer}>

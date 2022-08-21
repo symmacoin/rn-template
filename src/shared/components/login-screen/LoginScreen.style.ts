@@ -14,8 +14,8 @@ interface Style {
   passwordTextInputContainer: ViewStyle;
   loginButtonStyle: ViewStyle;
   loginTextStyle: TextStyle;
-  signupStyle: ViewStyle;
-  signupTextStyle: TextStyle;
+  registerStyle: ViewStyle;
+  registerTextStyle: TextStyle;
   recoverStyle: ViewStyle;
   recoverTextStyle: TextStyle;
   dividerStyle: ViewStyle;
@@ -67,12 +67,12 @@ export default StyleSheet.create<Style>({
     fontSize: 16,
     fontWeight: "bold",
   },
-  signupStyle: {
+  registerStyle: {
     marginTop: 20,
     alignItems: "center",
     justifyContent: "center",
   },
-  signupTextStyle: {
+  registerTextStyle: {
     color: "#acabb0",
   },
   recoverStyle: {

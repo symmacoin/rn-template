@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useMemo } from "react";
 import { View, StatusBar } from "react-native";
-import LoginScreen, { SocialButton } from "@shared-components/login-screen";
+import RecoverScreen from "@shared-components/recover-screen";
 import { useTheme } from "@react-navigation/native";
 /**
  * ? Local Imports
  */
 import createStyles from "./RecoversScreen.style";
-import Text from "@shared-components/text-wrapper/TextWrapper";
 
 interface RecoversScreenProps {}
 
@@ -16,20 +15,26 @@ const RecoversScreen: React.FC<RecoversScreenProps> = () => {
   const { colors } = theme;
   const styles = useMemo(() => createStyles(theme), [theme]);
 
-  const [username, setUsername] = useState(null);
-  const [switchValue, setSwitchValue] = useState(false);
-  const [spinnerVisibility, setSpinnerVisibility] = useState(false);
+  let usermails = "";
+
+  const [usermail, setUsermail] = useState("");
+
+  const Recover = () => {
+    setUsermail(usermails);
+  };
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
-      <LoginScreen
+      <RecoverScreen
         logoImageSource={require("@assets/images/logo/logo-example.png")}
-        onLoginPress={() => {}}
-        onSignupPress={() => {}}
-        onEmailChange={(email: string) => {}}
-        onPasswordChange={(password: string) => {}}
-        onRecoverPress={() => {}}
+        onEmailChange={(email: string) => {
+          usermails = email;
+        }}
+        onPasswordChange={() => {}}
+        onRecoverPress={() => {
+          Recover();
+        }}
       />
     </View>
   );
