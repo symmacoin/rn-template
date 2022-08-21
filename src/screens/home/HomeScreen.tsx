@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useMemo } from "react";
 import { View, FlatList, Image } from "react-native";
 import { useTheme } from "@react-navigation/native";
@@ -38,7 +39,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
   /* -------------------------------------------------------------------------- */
 
   const MenuButton = () => (
-    <RNBounceable>
+    <RNBounceable onPress={() => NavigationService.push(SCREENS.LOGIN)}>
       <Icon name="menu" type="Ionicons" color={colors.iconBlack} size={30} />
     </RNBounceable>
   );

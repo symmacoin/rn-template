@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { useColorScheme } from "react-native";
 import Icon from "react-native-dynamic-vector-icons";
@@ -16,6 +17,9 @@ import SearchScreen from "@screens/search/SearchScreen";
 import DetailScreen from "@screens/detail/DetailScreen";
 import ProfileScreen from "@screens/profile/ProfileScreen";
 import NotificationScreen from "@screens/notification/NotificationScreen";
+import LoginsScreen from "@screens/logins/LoginsScreen";
+import RecoversScreen from "@screens/recovers/RecoversScreen";
+import RegistersScreen from "@screens/registers/RegistersScreen";
 
 // ? If you want to use stack or tab or both
 const Tab = createBottomTabNavigator();
@@ -47,6 +51,15 @@ const Navigation = () => {
         iconName = focused ? "notifications" : "notifications-outline";
         break;
       case SCREENS.PROFILE:
+        iconName = focused ? "person" : "person-outline";
+        break;
+      case SCREENS.LOGIN:
+        iconName = focused ? "person" : "person-outline";
+        break;
+      case SCREENS.RECOVER:
+        iconName = focused ? "person" : "person-outline";
+        break;
+      case SCREENS.REGISTER:
         iconName = focused ? "person" : "person-outline";
         break;
       default:
@@ -93,6 +106,15 @@ const Navigation = () => {
         <Stack.Screen name={SCREENS.HOME} component={renderTabNavigation} />
         <Stack.Screen name={SCREENS.DETAIL}>
           {(props) => <DetailScreen {...props} />}
+        </Stack.Screen>
+        <Stack.Screen name={SCREENS.LOGIN}>
+          {(props) => <LoginsScreen {...props} />}
+        </Stack.Screen>
+        <Stack.Screen name={SCREENS.RECOVER}>
+          {(props) => <RecoversScreen {...props} />}
+        </Stack.Screen>
+        <Stack.Screen name={SCREENS.REGISTER}>
+          {(props) => <RegistersScreen {...props} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

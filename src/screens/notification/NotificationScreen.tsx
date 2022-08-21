@@ -7,9 +7,9 @@ import { useTheme } from "@react-navigation/native";
 import createStyles from "./NotificationScreen.style";
 import Text from "@shared-components/text-wrapper/TextWrapper";
 
-interface ProfileScreenProps {}
+interface NotificationScreenProps {}
 
-const ProfileScreen: React.FC<ProfileScreenProps> = () => {
+const NotificationScreen: React.FC<NotificationScreenProps> = () => {
   const theme = useTheme();
   const { colors } = theme;
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -23,4 +23,4 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   );
 };
 
-export default ProfileScreen;
+export default NotificationScreen;
