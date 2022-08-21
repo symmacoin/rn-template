@@ -82,7 +82,7 @@ We're proudly announce that `Version 3.4` is here!
 To create a new project using the barebone boilerplate:
 
 ```sh
-git clone https://github.com/WrathChaos/react-native-typescript-boilerplate.git my-app-name
+git clone https://github.com/symmacoin/rn-template.git my-app-name
 ```
 
 # 🎯 Step By Step Guide
