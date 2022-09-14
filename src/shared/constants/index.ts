@@ -1,6 +1,7 @@
 // ? Screens
 export const SCREENS = {
   HOME: "Home",
+  TABS: "Home",
   LOGIN: "Login",
   RECOVER: "Recover",
   REGISTER: "Register",
